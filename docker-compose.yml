@@ -1,0 +1,79 @@
+services:
+    php:
+        build: ./docker/php
+        container_name: ${APP_NAME}.php
+        depends_on:
+            db:
+                condition: service_healthy
+        links:
+            - db
+        networks:
+            - local
+        ports:
+            - '${APP_PORT:-8000}:80'
+        restart: on-failure:3
+        user: '${UID:-1000}:${GID:-1000}'
+        tty: true
+        volumes:
+            - ./:/app
+
+    node:
+        build: ./docker/node
+        container_name: ${APP_NAME}.node
+        networks:
+            - local
+        ports:
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        restart: on-failure:3
+        tty: true
+        user: '${UID:-1000}:${GID:-1000}'
+        volumes:
+            - ./:/app
+
+    phpmyadmin:
+        container_name: ${APP_NAME}.phpmyadmin
+        depends_on:
+            db:
+                condition: service_healthy
+        environment:
+            PMA_HOST: db
+            PMA_PORT: '3306'
+            PMA_USER: '${DB_USERNAME:-user}'
+            PMA_PASSWORD: '${DB_PASSWORD:-password}'
+            UPLOAD_LIMIT: '1G'
+        image: phpmyadmin:latest
+        links:
+            - db
+        networks:
+            - local
+        ports:
+            - '${PHPMYADMIN_PORT:-8080}:80'
+        restart: always
+
+    db:
+        container_name: ${APP_NAME}.db
+        environment:
+            MYSQL_RANDOM_ROOT_PASSWORD: 1
+            MYSQL_DATABASE: '${DB_DATABASE:-app}'
+            MYSQL_USER: '${DB_USERNAME:-user}'
+            MYSQL_PASSWORD: '${DB_PASSWORD:-password}'
+        healthcheck:
+            test: ['CMD', 'healthcheck.sh', '--connect', '--innodb_initialized']
+            start_period: 10s
+            interval: 10s
+            timeout: 5s
+            retries: 3
+        image: 'mariadb:lts'
+        networks:
+            - local
+        ports:
+            - '3306'
+        restart: always
+        volumes:
+            - 'db-data:/var/lib/mysql'
+
+volumes:
+    db-data: null
+
+networks:
+    local:
