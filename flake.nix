@@ -26,8 +26,6 @@
           default = mkShell {
             buildInputs = [
               php83
-              php83Extensions.bcmath
-              php83Extensions.gd
               php83Packages.composer
               nodejs_22
             ];

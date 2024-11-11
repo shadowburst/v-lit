@@ -10,5 +10,9 @@
     "vueIndentScriptAndStyle": false,
     "organizeImportsSkipDestructiveCodeActions": true,
     "tailwindFunctions": ["cn"],
-    "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"]
+    "plugins": [
+        "prettier-plugin-organize-attributes",
+        "prettier-plugin-organize-imports",
+        "prettier-plugin-tailwindcss"
+    ]
 }
