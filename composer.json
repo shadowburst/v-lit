@@ -23,6 +23,7 @@
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
+        "aaronfrancis/solo": "^0.1.2",
         "fakerphp/faker": "^1.23",
         "fumeapp/modeltyper": "^2.8",
         "laravel/breeze": "^2.2",
