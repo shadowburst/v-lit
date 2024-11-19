@@ -30,10 +30,8 @@
               nodejs_22
             ];
             shellHook = ''
-              alias php="docker exec -it template.php php"
-              alias composer="docker exec -it template.php composer"
-              alias npm="docker exec -it template.node npm"
-              alias node="docker exec -it template.node node"
+              alias sail=./vendor/bin/sail
+              alias pint=./vendor/bin/pint
             '';
           };
         };
