@@ -24,14 +24,13 @@
       {
         devShells = {
           default = mkShell {
-            buildInputs = [
-              php83
-              php83Packages.composer
-              nodejs_22
-            ];
             shellHook = ''
               alias sail=./vendor/bin/sail
-              alias pint=./vendor/bin/pint
+              alias pint="sail php ./vendor/bin/pint"
+              alias php="sail php"
+              alias composer="sail composer"
+              alias npm="sail npm"
+              alias node="sail node"
             '';
           };
         };
