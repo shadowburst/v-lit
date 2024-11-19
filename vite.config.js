@@ -1,7 +1,7 @@
-import { defineConfig, loadEnv } from 'vite';
-import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import laravel from 'laravel-vite-plugin';
 import i18n from 'laravel-vue-i18n/vite';
+import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '');
@@ -20,14 +20,14 @@ export default defineConfig(({ mode }) => {
                     },
                 },
             }),
-            i18n()
+            i18n(),
         ],
         server: {
             host: true,
             port: parseInt(env.VITE_PORT || '5173'),
             strictPort: true,
             hmr: {
-                host: 'localhost',
+                host: env.APP_URL?.replace('http://', '')?.replace('https://', '') ?? 'localhost',
             },
         },
     };
