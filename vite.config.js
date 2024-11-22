@@ -26,9 +26,6 @@ export default defineConfig(({ mode }) => {
             host: true,
             port: parseInt(env.VITE_PORT || '5173'),
             strictPort: true,
-            hmr: {
-                host: env.APP_URL?.replace('http://', '')?.replace('https://', '') ?? 'localhost',
-            },
         },
     };
 });
