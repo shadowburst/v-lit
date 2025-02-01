@@ -1,11 +1,19 @@
 {
-    "name": "shadowburst/vilt-template",
+    "name": "shadowburst/v-lit",
     "type": "project",
     "version": "0.0.0",
-    "description": "Template used to make robust apps",
+    "description": "Laravel template for a new SAAS project",
     "keywords": [
         "laravel",
-        "framework"
+        "framework",
+        "vilt",
+        "template"
+    ],
+    "authors": [
+        {
+            "name": "Peter Baudry",
+            "role": "Maintainer"
+        }
     ],
     "license": "MIT",
     "require": {
@@ -86,5 +94,6 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "$schema": "https://getcomposer.org/schema.json"
 }
