@@ -1,7 +1,7 @@
 {
     "name": "shadowburst/v-lit",
     "type": "project",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Laravel template for a new SAAS project",
     "keywords": [
         "laravel",
